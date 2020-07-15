@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Label
 
 class PoseModelAdmin(admin.ModelAdmin):
     list_display = ['title', 'updated', 'timestamp']
@@ -10,3 +10,4 @@ class PoseModelAdmin(admin.ModelAdmin):
 
 # Register your models here.	# Register your models here.
 admin.site.register(Post, PoseModelAdmin) 
+admin.site.register(Label) 
