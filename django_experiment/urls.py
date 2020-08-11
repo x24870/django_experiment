@@ -20,5 +20,5 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace='posts')),
-    path('schedule/', include('schedule.urls', namespace='schedule'))
+    path('my_schedule/', include('my_schedule.urls', namespace='my_schedule'))
 ]
