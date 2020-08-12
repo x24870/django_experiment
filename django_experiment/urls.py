@@ -20,5 +20,6 @@ from django.conf.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace='posts')),
-    path('my_schedule/', include('my_schedule.urls', namespace='my_schedule'))
+    path('my_schedule/', include('my_schedule.urls', namespace='my_schedule')),
+    path('schedule/', include('schedule.urls'))
 ]
