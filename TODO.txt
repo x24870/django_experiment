@@ -1,0 +1,5 @@
+Packages:
+dajngo-tables
+django-filter
+django-crispy-forms
+django-scheduler
