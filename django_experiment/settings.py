@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     # django scheduler
     'schedule',
+    # django-google-map
+    'django_google_maps',
     # my apps
     'posts',
     'my_schedule',
@@ -147,3 +149,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = '/posts/'
 
+GOOGLE_MAPS_API_KEY = "TEST KEY"
