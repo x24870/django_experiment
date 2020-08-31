@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django_google_maps',
     # my apps
     'posts',
-    'my_schedule',
 ]
 
 MIDDLEWARE = [
