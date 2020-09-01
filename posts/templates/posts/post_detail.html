@@ -9,6 +9,7 @@
     <h3>Label: {% for label in post.label.all %} <span>{{label.name}}</span> {% endfor %}</h3>
     <p>posted: {{ post.timestamp }}</p>
     <p>updated: {{ post.updated }}</p>
+    <p>current time: {{ currentTime }}</p>
     <div class="post-content">{{ post.content }}</div>
   </div>
 {% endblock %}

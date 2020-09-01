@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.utils import timezone
 
 from .models import Post
 
@@ -13,6 +14,18 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['currentTime'] = timezone.now()
+        return context
+
+    # def get_object(self):
+    #     # Everytime get this object, set the updated field to current time
+    #     obj = super().get_object()
+    #     obj.updated = timezone.now()
+    #     obj.save()
+    #     return obj
 
 def post_create(request):
     return HttpResponse("<h1>Retrun from post_create</h1>")
