@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,15 +7,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="{% static 'posts/css/posts_list.css' %} ">
 </head>
 
 <body>
   <h1>Post List Page</h1>
   {% for post in posts %}
-  <h1>{{ post.title }}</h1>
-  <p>posted: {{ post.timestamp }}</p>
-  <p>updated: {{ post.updated }}</p>
-  <p>{{ post.content }}</p>
+  <div class="post-div">
+    <h1>{{ post.title }}</h1>
+    <p>posted: {{ post.timestamp }}</p>
+    <p>updated: {{ post.updated }}</p>
+    <p>{{ post.content }}</p>
+  </div>
   {% endfor %}
 </body>
 
