@@ -1,12 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from .models import Post
 
-# Create your views here.
+class PostListView(ListView):
+    model = Post
+    context_object_name = 'posts'
+    queryset = Post.objects.all()
+    template_name = 'posts/post_list.html'
+
 def post_list(request):
     posts = Post.objects.all()
-    context = {'posts': posts}
+    context = {}
+    context['posts'] = posts
     return render(request, 'posts/post_list.html', context)
 
 def post_create(request):
