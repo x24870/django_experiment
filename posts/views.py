@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import DeleteView
 from django.utils import timezone
+from django.urls import reverse_lazy
 
 from .models import Post
 
@@ -27,11 +29,15 @@ class PostDetailView(DetailView):
     #     obj.save()
     #     return obj
 
+class PostDeleteView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('posts:post_list')
+
+    def get(self, *args, **kwargs):
+        raise Http404
+
 def post_create(request):
     return HttpResponse("<h1>Retrun from post_create</h1>")
 
 def post_update(request):
     return HttpResponse("<h1>Retrun from post_upadte</h1>")
-
-def post_delete(request):
-    return HttpResponse("<h1>Retrun from post_delete</h1>")

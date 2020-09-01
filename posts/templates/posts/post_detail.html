@@ -11,5 +11,9 @@
     <p>updated: {{ post.updated }}</p>
     <p>current time: {{ currentTime }}</p>
     <div class="post-content">{{ post.content }}</div>
+    <hr>
+    <form method="POST" action="{% url 'posts:post_delete' pk=post.pk %}">{% csrf_token %}
+        <button type="submit">Delete this post</button>
+    </form>
   </div>
 {% endblock %}
