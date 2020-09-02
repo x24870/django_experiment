@@ -1,7 +1,7 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import DeleteView, CreateView
 from django.utils import timezone
 from django.urls import reverse_lazy
 
@@ -36,8 +36,18 @@ class PostDeleteView(DeleteView):
     def get(self, *args, **kwargs):
         raise Http404
 
-def post_create(request):
-    return HttpResponse("<h1>Retrun from post_create</h1>")
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'posts/post_create.html'
+    # fields = ['title','content']
+    fields = '__all__'
+
+    def form_valid(self, form):
+        if form.is_valid():
+            print( form.cleaned_data.get('label') )
+            if form.cleaned_data.get('label') == None:
+                return render()
+            return super().form_valid(form)
 
 def post_update(request):
     return HttpResponse("<h1>Retrun from post_upadte</h1>")
