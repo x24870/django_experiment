@@ -59,6 +59,7 @@ class PostUpdateView(UpdateView):
             post = form.save(commit=False)
             post.save()
             # NOTE: If following 2 condition is met, form.save_m2m() is required.
+            # Reference: https://blog.csdn.net/weixin_42134789/article/details/80520500
             # 1. Using form.save(commit=False)
             # 2. There is ManyToMany field in the model
             form.save_m2m()
