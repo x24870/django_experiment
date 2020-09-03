@@ -3,6 +3,17 @@
 {% block extra_head %}
 {% endblock %}
 
+{% if messages %}
+<div>
+<strong>Messages:</strong>
+<ul>
+    {% for message in messages %}
+    <li>{{message}}</li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+
 {% block content %}
   <h1>{{ post.title }}</h1>
   <div class="post-detail">

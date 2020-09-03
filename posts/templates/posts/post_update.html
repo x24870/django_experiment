@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Create Post</h1>
+  <h1>Update Post</h1>
   <form action="." method="POST">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create">
+    <input type="submit" value="Update">
   </form>
 {% endblock %}
