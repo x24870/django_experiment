@@ -6,6 +6,30 @@
     {% endblock %}
   </head>
   <body>
+      <div class="navbar-container">
+      <strong class="navbar-item">
+        <a href="{% url 'posts:post_list' %}">BLOG</a>
+      </strong>
+      {% if user.is_authenticated %}
+      <div class="navbar-item">
+        <a href="{% url 'account_logout' %}">Logout</a>
+      </div>
+      {% else %}
+      <div class="navbar-item">
+        <a href="{% url 'account_login' %}">Login</a>
+      </div>
+      {% endif %}
+      <!-- <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+        {% else %}
+        <li><a href="{% url 'account_login' %}">Sign In !!!!</a></li>
+        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul> -->
+    </div>
+
     {% block body %}
 
         {% if messages %}
