@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.urls import reverse_lazy
 from django import forms
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Post
 from .forms import PostFrom
@@ -36,12 +38,20 @@ class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('posts:post_list')
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get(self, *args, **kwargs):
         raise Http404
 
 class PostCreateView(CreateView):
     form_class = PostFrom
     template_name = 'posts/post_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_initial(self):
         initial = super().get_initial()
@@ -51,6 +61,10 @@ class PostCreateView(CreateView):
 class PostUpdateView(UpdateView):
     form_class = PostFrom
     template_name = 'posts/post_update.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
