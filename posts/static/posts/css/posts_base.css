@@ -14,7 +14,15 @@
 .navbar-item {
     margin: .2rem .5rem;
     padding: .2rem;
-    background-color: cadetblue;
+    background-color: rgb(57, 194, 148);
+}
+
+.navbar-item a {
+    color: black;
+}
+
+.last-item {
+    margin-left: auto;
 }
 
 .message {
