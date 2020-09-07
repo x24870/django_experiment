@@ -148,5 +148,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = '/posts/'
 ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 GOOGLE_MAPS_API_KEY = "TEST KEY"
