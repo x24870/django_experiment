@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
@@ -43,7 +43,14 @@ class PostDeleteView(DeleteView):
         return super().dispatch(*args, **kwargs)
 
     def get(self, *args, **kwargs):
-        raise Http404
+        return HttpResponseForbidden("Forbidden 403: Invalid request")
+
+    def post(self, *args, **kwargs):
+        post = self.get_object()
+        if self.request.user != post.user:
+            return HttpResponseForbidden("Forbidden 403: You are not post author")
+        post.delete()
+        return redirect(self.success_url)
 
 class PostCreateView(CreateView):
     form_class = PostFrom
@@ -76,6 +83,8 @@ class PostUpdateView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
+        if request.user != post.user:
+            return HttpResponseForbidden("Forbidden 403: You are not post author")
         form = PostFrom(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
@@ -92,6 +101,8 @@ class PostUpdateView(UpdateView):
 
     def get(self, request, *args, **kwargs):
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
+        if request.user != post.user:
+            return HttpResponseForbidden("Forbidden 403: You are not post author")
         form = PostFrom(instance=post)
         context = {'form': form}
         return render(request, self.template_name, context)

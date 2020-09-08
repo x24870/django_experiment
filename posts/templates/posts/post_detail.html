@@ -17,8 +17,11 @@
     <p>current time: {{ currentTime }}</p>
     <div class="post-content">{{ post.content }}</div>
     <hr>
+    {% if post.user == request.user %}
+    <button><a href="{% url 'posts:post_update' pk=post.pk %}">Upate this post</a></button>
     <form method="POST" action="{% url 'posts:post_delete' pk=post.pk %}">{% csrf_token %}
         <button type="submit">Delete this post</button>
     </form>
+    {% endif %}
   </div>
 {% endblock %}
