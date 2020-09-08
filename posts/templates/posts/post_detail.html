@@ -1,9 +1,13 @@
 {% load static %}
 
 {% block extra_head %}
+<link rel="stylesheet" href="{% static 'posts/css/posts_base.css' %}">
 {% endblock %}
 
 {% block content %}
+  {% if post.draft %}
+  <p class="draft">This is draft, only you can see this post</p>
+  {% endif %}
   <h1>{{ post.title }}</h1>
   <div class="post-detail">
     <h3>Label: {% for label in post.label.all %} <span>{{label.name}}</span> {% endfor %}</h3>

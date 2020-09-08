@@ -28,3 +28,7 @@
 .message {
     background-color: rgb(251, 255, 31);
 }
+
+.draft {
+    color: red;
+}

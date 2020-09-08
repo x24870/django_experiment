@@ -87,4 +87,14 @@ class PostUpdateView(UpdateView):
         form = PostFrom(instance=post)
         context = {'form': form}
         return render(request, self.template_name, context)
-        
+
+class UserPostListView(ListView):
+    context_object_name = 'posts'
+    template_name = 'posts/user_post_list.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UserPostListView, self).dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        return Post.objects.user_post(self.request.user)
