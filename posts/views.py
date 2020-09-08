@@ -58,6 +58,13 @@ class PostCreateView(CreateView):
         initial['title'] = 'Default Title'
         return initial
 
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.user = self.request.user
+        post.save()
+        return super().form_valid(form)
+
+
 class PostUpdateView(UpdateView):
     form_class = PostFrom
     template_name = 'posts/post_update.html'
