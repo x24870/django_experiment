@@ -11,6 +11,7 @@
   <h1>{{ post.title }}</h1>
   <div class="post-detail">
     <h3>Label: {% for label in post.label.all %} <span>{{label.name}}</span> {% endfor %}</h3>
+    <h5>Author: {{ post.user.username }}</h5>
     <p>posted: {{ post.timestamp }}</p>
     <p>updated: {{ post.updated }}</p>
     <p>current time: {{ currentTime }}</p>

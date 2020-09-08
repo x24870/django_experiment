@@ -12,6 +12,9 @@ class PostManager(models.Manager):
     def user_post(self, user):
         return super(PostManager, self).filter(user=user)
 
+    def active_post(self):
+        return super(PostManager, self).filter(draft=False)
+
 class Post(models.Model):
     title = models.CharField(max_length=120, blank=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)

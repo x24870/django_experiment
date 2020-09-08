@@ -14,6 +14,9 @@
       <div class="navbar-item">
         <p>Hello, {{ user.username }}</p>
       </div>
+      <div class="navbar-item">
+        <a href="{% url 'posts:user_post_list' %}">My posts</a>
+      </div>
       <div class="navbar-item last-item">
         <a href="{% url 'account_logout' %}">Logout</a>
       </div>

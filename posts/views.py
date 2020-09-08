@@ -15,7 +15,7 @@ from .forms import PostFrom
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
-    queryset = Post.objects.all()
+    queryset = Post.objects.active_post()
     template_name = 'posts/post_list.html'
 
 class PostDetailView(DetailView):
