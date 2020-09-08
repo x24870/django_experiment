@@ -59,9 +59,10 @@ class PostCreateView(CreateView):
         return initial
 
     def form_valid(self, form):
-        post = form.save(commit=False)
-        post.user = self.request.user
-        post.save()
+        # post = form.save(commit=False)
+        # post.user = self.request.user
+        # post.save()
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
