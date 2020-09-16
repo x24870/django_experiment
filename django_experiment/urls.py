@@ -17,9 +17,25 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
+from django.contrib.sitemaps import views
+from posts.sitemaps import PostSitemap
+from posts.models import Post
+
+info_dict = {
+    'queryset': Post.objects.active_post(),
+    'date_field': 'updated',
+}
+
+sitemaps = {
+    'posts': PostSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace='posts')),
     path('schedule/', include('schedule.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('sitemap.xml', views.index, {'sitemaps': sitemaps}),
+    path('sitemap-<section>.xml', views.sitemap, {'sitemaps': {'posts': PostSitemap}},
+         name='django.contrib.sitemaps.views.sitemap'),
 ]
