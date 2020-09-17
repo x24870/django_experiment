@@ -36,6 +36,6 @@ urlpatterns = [
     path('schedule/', include('schedule.urls')),
     path('accounts/', include('allauth.urls')),
     path('sitemap.xml', views.index, {'sitemaps': sitemaps}),
-    path('sitemap-<section>.xml', views.sitemap, {'sitemaps': {'posts': PostSitemap}},
+    path('sitemap-<section>.xml', views.sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
 ]
