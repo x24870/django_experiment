@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    # rest framework
+    'rest_framework',
     # django scheduler
     'schedule',
     # django-google-map

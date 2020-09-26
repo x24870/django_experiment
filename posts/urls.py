@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import include
 
 from .views import (
     PostListView,
@@ -18,4 +19,5 @@ urlpatterns = [
     path('update/<int:pk>/', PostUpdateView.as_view(), name='post_update'),
     path('delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
     path('user_post_list/', UserPostListView.as_view(), name='user_post_list'),
+    path('api/', include('posts.api.urls')),
 ] 
