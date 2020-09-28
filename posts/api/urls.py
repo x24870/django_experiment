@@ -8,5 +8,5 @@ router = DefaultRouter()
 router.register(r'', views.PostViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

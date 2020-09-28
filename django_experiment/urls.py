@@ -38,4 +38,6 @@ urlpatterns = [
     path('sitemap.xml', views.index, {'sitemaps': sitemaps}),
     path('sitemap-<section>.xml', views.sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
+    # If this url not been put here, the browserble Rest navbar will not show login button
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
