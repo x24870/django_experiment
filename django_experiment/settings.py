@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     # third party apps
+    'channels',
     # allauth
     'allauth',
     'allauth.account',
@@ -155,3 +156,5 @@ ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 GOOGLE_MAPS_API_KEY = "TEST KEY"
+
+ASGI_APPLICATION = "django_experiment.asgi.application"
