@@ -11,6 +11,7 @@ django-scheduler = "*"
 django-allauth = "*"
 djangorestframework = "*"
 channels = "*"
+pip-conflict-checker = "*"
 
 [requires]
 python_version = "3.8"
