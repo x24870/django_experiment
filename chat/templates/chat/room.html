@@ -12,22 +12,48 @@
   <input id="chat-message-submit" type="button" value="Send" />
 </body>
 <script>
+  let name = '{{name}}';
+
+  //create new websocket url
+  let chatSocket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws/chat/' + name + '/'
+  );
+
+  //append message to textarea when receive message
+  chatSocket.onmessage = (e) => {
+    let data = JSON.parse(e.data);
+    let message = data['message'];
+    handle_message(message);
+  };
+
+  //pring log if websocket closed
+  chatSocket.onclose = (e) => {
+    console.error('Chat socket closed unexpectedly');
+  };
+
+  document.querySelector('#chat-message-input').focus();
   document.querySelector('#chat-message-input').onkeyup = (e) => {
-    if(e.keyCode===13){
-      send_message();
+    if (e.keyCode === 13) {
+      document.querySelector('#chat-message-submit').click();
     }
   }
 
-  document.querySelector('#chat-message-submit').onclick = () => {
-    send_message();
+  // submit message to server by websocket
+  document.querySelector('#chat-message-submit').onclick = (e) => {
+    let messageInputDom = document.querySelector('#chat-message-input');
+    let message = messageInputDom.value;
+    chatSocket.send(
+      JSON.stringify({
+        'message': message
+      })
+    );
   }
 
-  function send_message() {
-    const message = document.querySelector('#chat-message-input');
+  function handle_message(msg) {
     const textarea = document.getElementById('chat-log');
-    document.querySelector('#chat-log').value += (message.value + '\n');
+    textarea.value += (msg + '\n');
     textarea.scrollTop = textarea.scrollHeight;
-    message.value = '';
   }
 </script>
 
