@@ -1,11 +1,11 @@
 from django.urls import path
 from django.conf.urls import include
 
-from .views import home_page, ChatRoom
+from .views import index, ChatRoom
 
 app_name = 'chat'
 
 urlpatterns = [
-    path('', home_page, name='home_page'),
-    path('chatroom/', ChatRoom.as_view(), name='chat_room')
+    path('', index, name='index'),
+    # path('chatroom/', ChatRoom.as_view(), name='chat_room')
 ] 

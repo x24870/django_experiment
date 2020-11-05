@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.views.generic import View
 
-def home_page(request):
+def index(request):
     return render(request, 'chat/index.html', {})
 
 class ChatRoom(View):
